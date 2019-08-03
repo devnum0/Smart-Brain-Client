@@ -1,4 +1,5 @@
 import React from 'react';
+import Field from '../Field/Field';
 
 class Register extends React.Component {
 
@@ -26,7 +27,8 @@ class Register extends React.Component {
     }
 
     onSubmitRegistration = () => {
-        fetch('https://server-face-api.herokuapp.com/register',{
+        // https://server-face-api.herokuapp.com/register
+        fetch('http://localhost:4000/register',{
         method: 'post',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify({
@@ -52,33 +54,14 @@ class Register extends React.Component {
                     <div className="measure">
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                             <legend className="f4 fw6 ph0 mh0">Registration</legend>
-                            <div className="mt3">
-                                <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
-                                <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                                        type="text" 
-                                        name="name" id="name" 
-                                        placeholder='John Doe'
-                                        onChange={this.onNameChange} />
-                            </div>
-                            <div className="mt3">
-                                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                                <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                                        type="email" 
-                                        name="email-address" 
-                                        id="email-address" 
-                                        placeholder='egov@egov.com' 
-                                        onChange={this.onEmailChange}/>
-                            </div>
-                            <div className="mv3">
-                                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                                <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                                        type="password" 
-                                        name="password" 
-                                        id="password" 
-                                        onChange={this.onPassWordChange}/>
-                            </div>
+                         
+                            <Field type={"text"} name={"name"} placeholder={"John Doe"} method={this.onNameChange}/>
+                           
+                            <Field type={"email"} name={"email-address"} placeholder={"egov@egov.com"} method={this.onEmailChange}/>
+
+                            <Field type={"password"} name={"password"}  method={this.onPassWordChange}/>
                         </fieldset>
-                        <div className="">
+                        <div >
                             <input onClick ={this.onSubmitRegistration} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Register" />
                         </div>
                     </div>

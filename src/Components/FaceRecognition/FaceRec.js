@@ -2,7 +2,6 @@ import React from 'react';
 import './FaceRec.css';
 
 const FaceRec = ({ imageUrl, box }) => {
-    console.log(imageUrl);
     return (
         <div className='center ma'>
             <div className='absolute mt2'>

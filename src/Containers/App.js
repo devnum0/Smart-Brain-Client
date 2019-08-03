@@ -41,10 +41,6 @@ class App extends Component {
         }
     }
 
-    clearLinkAndphoto() {
-        this.setState({imageUrl: ''})
-    }
-
     loadUser = (data) => { 
         this.setState({user:{
             id:data.id,
@@ -78,7 +74,12 @@ class App extends Component {
     }
 
     onButtonSubmit = () => {
-                this.setState({imageUrl: this.state.input});
+        console.log(this.state.imageUrl)
+
+                this.setState({
+                    imageUrl: this.state.input
+                  }, () => console.log(this.state.imageUrl))
+    
                   fetch('https://server-face-api.herokuapp.com/imageUrl', {
                     method: 'post',
                     headers: {'Content-Type': 'application/json'},
@@ -131,7 +132,7 @@ class App extends Component {
                     <div>
                         <Logo />
                         <Rank name={this.state.user.name} entries={this.state.user.entries}/>
-                        <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} clear={this.clearLinkAndphoto} />
+                        <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
                         <FaceRec imageUrl={this.state.imageUrl} box={this.state.box} />
                      </div>
                     :(
